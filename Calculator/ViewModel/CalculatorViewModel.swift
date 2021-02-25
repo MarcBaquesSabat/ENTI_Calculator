@@ -19,6 +19,10 @@ enum CalculatorOperation {
     case addition
     case equal
 }
+enum ClearOperation: String{
+    case ClearAll = "AC"
+    case Clear = "C"
+}
 
 protocol CalculatorViewModelProtocol {
     func addDigit(_ digit: String)
@@ -29,13 +33,18 @@ class CalculatorViewModel: CalculatorViewModelProtocol,
                            ObservableObject {
     
     @Published var display: String = "0"
+    @Published var buttonText: String = "AC"
 
     private var operation: Calculation = Calculation(firstOperator: 0,
                                                      secondOperator: 0,
                                                      operation: .none)
     private var operationFinished: Bool = false
+    private var addingNumbers: Bool = false
     
     public func addDigit(_ digit: String) {
+        addingNumbers = true
+        buttonText = ClearOperation.Clear.rawValue
+        
         if self.operation.operation != .none && self.operation.secondOperator == nil {
             self.operation.secondOperator = 0
             self.display = digit
@@ -54,8 +63,14 @@ class CalculatorViewModel: CalculatorViewModelProtocol,
     }
     
     public func resetOperands() {
-        self.operation.reset()
-        self.display = "0"
+        if(addingNumbers){
+            
+        }else{
+            EndCalculations()
+            
+            self.operation.reset()
+            self.display = "0"
+        }
     }
     
     public func perform(operation: CalculatorOperation) {
@@ -82,6 +97,9 @@ class CalculatorViewModel: CalculatorViewModelProtocol,
     
     func calculateResult(for values: Calculation) -> Int? {
         guard let secondOperator = values.secondOperator else { return nil }
+        
+        EndCalculations()
+        
         switch values.operation {
         case .addition:
             return operation.firstOperator + secondOperator
@@ -99,5 +117,10 @@ class CalculatorViewModel: CalculatorViewModelProtocol,
         default:
             return nil
         }
+    }
+    
+    func EndCalculations(){
+        self.addingNumbers = false
+        self.buttonText = "AC"
     }
 }
