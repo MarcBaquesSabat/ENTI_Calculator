@@ -33,7 +33,7 @@ class CalculatorViewModel: CalculatorViewModelProtocol,
                            ObservableObject {
     
     @Published var display: String = "0"
-    @Published var buttonText: String = "AC"
+    @Published var buttonText: String = ClearOperation.ClearAll.rawValue
 
     private var operation: Calculation = Calculation(firstOperator: 0,
                                                      secondOperator: 0,
@@ -65,7 +65,11 @@ class CalculatorViewModel: CalculatorViewModelProtocol,
     public func resetOperands() {
         if(addingNumbers){
             
-        }else{
+            self.buttonText = ClearOperation.ClearAll.rawValue
+            addingNumbers = false;
+            self.display = "0"
+ 
+        }else if(self.display != "0"){
             EndCalculations()
             
             self.operation.reset()
@@ -75,6 +79,8 @@ class CalculatorViewModel: CalculatorViewModelProtocol,
     
     public func perform(operation: CalculatorOperation) {
         guard let value = Int(display) else { return }
+        
+        addingNumbers = true;
         
         switch operation {
         case .swipeSign:
@@ -91,14 +97,13 @@ class CalculatorViewModel: CalculatorViewModelProtocol,
             self.operation.firstOperator = value
             self.operation.operation = operation
         }
-        
-        self.display = "0"
+
     }
     
     func calculateResult(for values: Calculation) -> Int? {
         guard let secondOperator = values.secondOperator else { return nil }
         
-        EndCalculations()
+        addingNumbers = true;
         
         switch values.operation {
         case .addition:
@@ -120,7 +125,7 @@ class CalculatorViewModel: CalculatorViewModelProtocol,
     }
     
     func EndCalculations(){
-        self.addingNumbers = false
-        self.buttonText = "AC"
+        self.addingNumbers = true
+        self.buttonText = ClearOperation.Clear.rawValue
     }
 }
