@@ -70,8 +70,9 @@ class CalculatorViewModel: CalculatorViewModelProtocol,
             self.display = "0"
  
         }else if(self.display != "0"){
-            EndCalculations()
             
+            self.addingNumbers = true
+            self.buttonText = ClearOperation.Clear.rawValue
             self.operation.reset()
             self.display = "0"
         }
@@ -101,31 +102,12 @@ class CalculatorViewModel: CalculatorViewModelProtocol,
     }
     
     func calculateResult(for values: Calculation) -> Int? {
-        guard let secondOperator = values.secondOperator else { return nil }
+        guard values.secondOperator != nil else { return nil }
         
         addingNumbers = true;
         
-        switch values.operation {
-        case .addition:
-            return operation.firstOperator + secondOperator
-        case .division:
-            return operation.firstOperator / secondOperator
-        case .multiplication:
-            return operation.firstOperator * secondOperator
-        case .subtraction:
-            return operation.firstOperator - secondOperator
-        case .percentage:
-            let base = Double(secondOperator)
-            let percentage = Double(operation.firstOperator) / 100
-            let result = base * percentage
-            return Int(result)
-        default:
-            return nil
-        }
-    }
-    
-    func EndCalculations(){
-        self.addingNumbers = true
-        self.buttonText = ClearOperation.Clear.rawValue
+        let calcule = OperationFactory.CreateOperation(op:values.operation)
+        return calcule?.CalculeResult(operation: values)
+        
     }
 }

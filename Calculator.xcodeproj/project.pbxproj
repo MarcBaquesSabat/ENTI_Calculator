@@ -16,6 +16,7 @@
 		2763C8C725E6CAE100314E8B /* OperationButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2763C8C625E6CAE100314E8B /* OperationButton.swift */; };
 		2763C8CA25E6D04B00314E8B /* CalculatorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2763C8C925E6D04B00314E8B /* CalculatorViewModel.swift */; };
 		27869F2925E7F59500ACEA14 /* Calculation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27869F2825E7F59500ACEA14 /* Calculation.swift */; };
+		EF4A939125EEB427001B1E8E /* CalculeResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF4A939025EEB427001B1E8E /* CalculeResult.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		2763C8C625E6CAE100314E8B /* OperationButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OperationButton.swift; sourceTree = "<group>"; };
 		2763C8C925E6D04B00314E8B /* CalculatorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorViewModel.swift; sourceTree = "<group>"; };
 		27869F2825E7F59500ACEA14 /* Calculation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Calculation.swift; sourceTree = "<group>"; };
+		EF4A939025EEB427001B1E8E /* CalculeResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculeResult.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,6 +98,7 @@
 			isa = PBXGroup;
 			children = (
 				27869F2825E7F59500ACEA14 /* Calculation.swift */,
+				EF4A939025EEB427001B1E8E /* CalculeResult.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -183,6 +186,7 @@
 				2763C8C125E6C6E300314E8B /* DigitButton.swift in Sources */,
 				2763C8C725E6CAE100314E8B /* OperationButton.swift in Sources */,
 				2763C8CA25E6D04B00314E8B /* CalculatorViewModel.swift in Sources */,
+				EF4A939125EEB427001B1E8E /* CalculeResult.swift in Sources */,
 				2763C8C425E6C9D600314E8B /* ActionButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
