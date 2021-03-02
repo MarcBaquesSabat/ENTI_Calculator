@@ -29,13 +29,13 @@ public class OperationFactory{
 
 protocol Calcule{
     
-    func CalculeResult(operation : Calculation)-> Int?
+    func CalculeResult(operation : Calculation)-> Double?
     
 }
 
 public class AdditionCalcule : Calcule{
     
-    func CalculeResult(operation: Calculation) -> Int? {
+    func CalculeResult(operation: Calculation) -> Double? {
         guard let secondOperator = operation.secondOperator else {
             return nil
         }
@@ -45,7 +45,7 @@ public class AdditionCalcule : Calcule{
 }
 
 public class DivisionCalcule : Calcule{
-    func CalculeResult(operation: Calculation) -> Int? {
+    func CalculeResult(operation: Calculation) -> Double? {
         guard let secondOperator = operation.secondOperator else {
             return nil
         }
@@ -55,7 +55,7 @@ public class DivisionCalcule : Calcule{
 }
 
 public class MultiplicationCalcule : Calcule{
-    func CalculeResult(operation: Calculation) -> Int? {
+    func CalculeResult(operation: Calculation) -> Double? {
         guard let secondOperator = operation.secondOperator else {
             return nil
         }
@@ -64,7 +64,7 @@ public class MultiplicationCalcule : Calcule{
 }
 
 public class SubstractionCalcule : Calcule{
-    func CalculeResult(operation: Calculation) -> Int? {
+    func CalculeResult(operation: Calculation) -> Double? {
         guard let secondOperator = operation.secondOperator else {
             return nil
         }
@@ -73,7 +73,7 @@ public class SubstractionCalcule : Calcule{
 }
 
 public class PercentageCalcule : Calcule{
-    func CalculeResult(operation: Calculation) -> Int? {
+    func CalculeResult(operation: Calculation) -> Double? {
         guard let secondOperator = operation.secondOperator else {
             return nil
         }
@@ -81,6 +81,6 @@ public class PercentageCalcule : Calcule{
         let base = Double(secondOperator)
         let percentage = Double(operation.firstOperator) / 100
         let result = base * percentage
-        return Int(result)
+        return Double(result)
     }
 }

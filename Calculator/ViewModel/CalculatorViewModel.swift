@@ -63,23 +63,24 @@ class CalculatorViewModel: CalculatorViewModelProtocol,
     }
     
     public func resetOperands() {
-        if(addingNumbers){
-            
-            self.buttonText = ClearOperation.ClearAll.rawValue
-            addingNumbers = false;
-            self.display = "0"
- 
-        }else if(self.display != "0"){
-            
-            self.addingNumbers = true
-            self.buttonText = ClearOperation.Clear.rawValue
-            self.operation.reset()
-            self.display = "0"
-        }
+//        if(addingNumbers){
+//
+//            self.buttonText = ClearOperation.ClearAll.rawValue
+//            addingNumbers = false;
+//            self.display = "0"
+//
+//        }else if(self.display != "0"){
+//
+//            self.addingNumbers = true
+//            self.buttonText = ClearOperation.Clear.rawValue
+//            self.operation.reset()
+//            self.display = "0"
+//        }
+        //TODO Correct
     }
     
     public func perform(operation: CalculatorOperation) {
-        guard let value = Int(display) else { return }
+        guard let value = Double(display) else { return }
         
         addingNumbers = true;
         
@@ -89,7 +90,7 @@ class CalculatorViewModel: CalculatorViewModelProtocol,
         case .equal:
             self.operation.secondOperator = value
             guard let result = calculateResult(for: self.operation) else { return }
-            self.display = String(result)
+            self.display = String(format: "%.2f", result)
             self.operation.reset()
             self.operation.firstOperator = result
             self.operationFinished = true
@@ -101,7 +102,7 @@ class CalculatorViewModel: CalculatorViewModelProtocol,
 
     }
     
-    func calculateResult(for values: Calculation) -> Int? {
+    func calculateResult(for values: Calculation) -> Double? {
         guard values.secondOperator != nil else { return nil }
         
         addingNumbers = true;

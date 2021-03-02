@@ -8,8 +8,8 @@
 import Foundation
 
 struct Calculation {
-    var firstOperator: Int
-    var secondOperator: Int?
+    var firstOperator: Double
+    var secondOperator: Double?
     var operation: CalculatorOperation
     
     mutating func reset() {
